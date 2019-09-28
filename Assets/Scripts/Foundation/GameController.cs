@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameController : BaseController {
+    public GameObject chatArea;
+    public GameObject chatPrefab;
+
     private static GameController _instance;
     public static GameController Instance {
         get {
@@ -80,5 +83,11 @@ public class GameController : BaseController {
     public void OnBack() {
         Destroy(Pool.Instance.ComponentForType(typeof(AdComponent)));
 
+    }
+
+    public void AddChat() {
+        GameObject chatBox = Instantiate(chatPrefab);
+        chatBox.transform.SetParent(chatArea.transform);
+        chatBox.transform.SetAsFirstSibling();
     }
 }
